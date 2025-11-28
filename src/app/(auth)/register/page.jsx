@@ -1,16 +1,12 @@
-"use client";
+'use client';
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signInWithPopup,
-} from "firebase/auth";
-import { auth, googleProvider } from "../../../lib/firebase";
-import { useRouter, useSearchParams,  } from "next/navigation";
-import useAxiosSecure from "@/hooks/useAxiosSecure";
+import { createUserWithEmailAndPassword, updateProfile, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "@/lib/firebase";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 export default function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -23,19 +19,12 @@ export default function Register() {
   const handleRegistration = async (data) => {
     try {
       setLoading(true);
-
-      // Create User
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const user = userCredential.user;
 
       // Upload photo to imgbb
       const formData = new FormData();
       formData.append("image", data.photo[0]);
-
       const imgRes = await axios.post(
         `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMAGEBB_KEY}`,
         formData
@@ -43,22 +32,16 @@ export default function Register() {
       const photoURL = imgRes?.data?.data?.url;
 
       // Update Firebase profile
-      await updateProfile(user, {
-        displayName: data.name,
-        photoURL,
-      });
+      await updateProfile(user, { displayName: data.name, photoURL });
 
-      // Save user to backend
-      const userInfo = {
-        email: data.email,
-        displayName: data.name,
-        photoURL,
-      };
+      // Save to backend
+      const userInfo = { email: data.email, displayName: data.name, photoURL };
       await axiosSecure.post("/users", userInfo);
 
       router.push(redirectPath);
     } catch (error) {
       console.error("Registration Error:", error.message);
+      alert(error.message);
     } finally {
       setLoading(false);
     }
@@ -70,6 +53,7 @@ export default function Register() {
       router.push(redirectPath);
     } catch (error) {
       console.error("Google Login Error:", error.message);
+      alert(error.message);
     }
   };
 
@@ -79,8 +63,6 @@ export default function Register() {
       <p className="text-center mb-4">Please Register</p>
 
       <form onSubmit={handleSubmit(handleRegistration)} className="flex flex-col gap-6">
-
-        {/* NAME */}
         <div className="relative w-full pt-5">
           <input
             type="text"
@@ -94,18 +76,12 @@ export default function Register() {
           {errors.name && <p className="text-red-500 mt-1">Name is required.</p>}
         </div>
 
-        {/* PHOTO */}
         <div className="relative flex justify-between border-b-2 border-gray-400 w-full py-3">
           <p className="px-5 py-2 text-gray-400">PHOTO</p>
-          <input
-            type="file"
-            {...register("photo", { required: true })}
-            className="file-input file-input-bordered w-full"
-          />
+          <input type="file" {...register("photo", { required: true })} className="file-input file-input-bordered w-full" />
         </div>
         {errors.photo && <p className="text-red-500">Photo is required.</p>}
 
-        {/* EMAIL */}
         <div className="relative w-full pt-5">
           <input
             type="email"
@@ -119,45 +95,27 @@ export default function Register() {
           {errors.email && <p className="text-red-500 mt-1">Email is required.</p>}
         </div>
 
-        {/* PASSWORD */}
         <div className="relative w-full pt-5">
           <input
             type="password"
             placeholder=" "
-            {...register("password", {
-              required: true,
-              minLength: 6,
-              pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).+$/,
-            })}
+            {...register("password", { required: true, minLength: 6 })}
             className="peer w-full bg-transparent border-b-2 border-gray-400 text-[#03045e] text-lg py-2 placeholder-transparent focus:outline-none focus:border-b-4 focus:border-[#38caef] transition-all"
           />
           <label className="absolute left-0 top-2 text-gray-400 text-lg transition-all peer-placeholder-shown:top-7 peer-focus:top-0 peer-focus:text-[#38caef] peer-focus:text-base">
             Password
           </label>
-
-          {errors.password?.type === "required" && <p className="text-red-500">Password is required.</p>}
-          {errors.password?.type === "minLength" && <p className="text-red-500">Password must be at least 6 characters.</p>}
-          {errors.password?.type === "pattern" && (
-            <p className="text-red-500">Password must contain uppercase, lowercase & number.</p>
-          )}
+          {errors.password && <p className="text-red-500 mt-1">Password is required.</p>}
         </div>
 
-        {/* REGISTER BUTTON */}
-        <button
-          type="submit"
-          className="group grid place-items-center bg-[#e3edf7] text-black font-bold rounded-lg py-2 shadow-md hover:shadow-inner hover:translate-y-1 transition-all"
-        >
+        <button type="submit" className="group grid place-items-center bg-[#e3edf7] text-black font-bold rounded-lg py-2 shadow-md hover:shadow-inner hover:translate-y-1 transition-all">
           {loading ? "Registering..." : "Register"}
         </button>
       </form>
 
       <div className="text-center py-2">OR</div>
 
-      {/* GOOGLE LOGIN */}
-      <button
-        onClick={handleGoogle}
-        className="group grid place-items-center bg-[#e3edf7] text-black font-bold rounded-lg py-2 shadow-md hover:shadow-inner hover:translate-y-1 transition-all w-full"
-      >
+      <button onClick={handleGoogle} className="group grid place-items-center bg-[#e3edf7] text-black font-bold rounded-lg py-2 shadow-md hover:shadow-inner hover:translate-y-1 transition-all w-full">
         Sign in with Google
       </button>
 
