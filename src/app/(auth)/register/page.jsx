@@ -15,7 +15,7 @@ import axios from "axios";
 export default function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const router = useRouter();
-  const searchParams = useSearchParams(;
+  const searchParams = useSearchParams();
   const redirectPath = searchParams.get("from") || "/";
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
