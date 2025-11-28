@@ -1,0 +1,92 @@
+[
+   {
+      "id": 1,
+      "name": "Nike Air Zoom Pegasus",
+      "type": "shoe",
+      "description": "Nike Air Zoom Pegasus is designed for runners seeking a lightweight, durable running shoe that delivers responsive cushioning and a smooth ride. Featuring breathable mesh upper, Flywire cables for secure fit, and Zoom Air units for energy return, it ensures peak performance during every step. Perfect for daily training, long runs, or casual wear.",
+      "price": 59.99,
+      "isTrending": true,
+      "imageUrl": "https://i.ibb.co/93ScPKS1/tamara-bellis-m-NZ-Gv-OQUUY-unsplash.jpg"
+   },
+   {
+      "id": 2,
+      "name": "Adidas UltraBoost 22",
+      "type": "shoe",
+      "description": "Adidas UltraBoost 22 offers maximum energy return and premium comfort for long-distance running. It features a Primeknit upper that adapts to your foot, Boost midsole for cushioning, and Stretchweb outsole for natural movement. Ideal for athletes and fitness enthusiasts who value performance and style.",
+      "price": 85.50,
+      "isTrending": false,
+      "imageUrl": "https://i.ibb.co/m5BkPqt8/tamara-bellis-68cs-PWTnafo-unsplash.jpg"
+   },
+   {
+      "id": 3,
+      "name": "Puma Velocity Nitro",
+      "type": "shoe",
+      "description": "Puma Velocity Nitro combines exceptional cushioning with lightweight design, perfect for fast-paced workouts and sprinting. Features NITRO foam for maximum energy return, engineered mesh upper for breathability, and TPU heel for stability. Ideal for gym enthusiasts and competitive runners.",
+      "price": 45.00,
+      "isTrending": true,
+      "imageUrl": "https://i.ibb.co/yB6QPXT5/luis-felipe-lins-LG88-A2-Xg-IXY-unsplash.jpg"
+   },
+   {
+      "id": 4,
+      "name": "Mizuno Wave Rider",
+      "type": "shoe",
+      "description": "Mizuno Wave Rider offers a balanced ride with smooth transitions for neutral runners. It features Mizuno Wave technology for shock absorption, U4ic midsole for lightweight cushioning, and breathable engineered mesh for comfort. Perfect for everyday training or marathon preparation.",
+      "price": 62.75,
+      "isTrending": true,
+      "imageUrl": "https://i.ibb.co/6042L1Rj/felirbe-6z-O5-VKogo-ZE-unsplash.jpg"
+   },
+   {
+      "id": 5,
+      "name": "Brooks Ghost 15",
+      "type": "shoe",
+      "description": "Brooks Ghost 15 delivers smooth, reliable cushioning, making it ideal for daily training runs. Features DNA Loft foam for soft yet responsive feel, engineered mesh upper for breathability, and Segmented Crash Pad for easy heel-to-toe transitions. Designed for runners who value comfort and durability.",
+      "price": 105.50,
+      "isTrending": true,
+      "imageUrl": "https://i.ibb.co/Zz1SpDvH/maksim-larin-ezdrvz-A1h-Zw-unsplash.jpg"
+   },
+   {
+      "id": 6,
+      "name": "Men Premium Denim Jacket",
+      "type": "dress",
+      "description": "Classic Men Premium Denim Jacket crafted from 100% high-quality denim, featuring soft inner lining, reinforced stitching, and durable hardware. Designed for casual and semi-formal wear, offering a stylish, timeless look with comfort for all-day wear. Can be paired with jeans or chinos effortlessly.",
+      "price": 72.00,
+      "isTrending": false,
+      "imageUrl": "https://i.ibb.co/QvBG2tqd/maksim-larin-NOps-C3n-WTz-Y-unsplash.jpg"
+   },
+   {
+      "id": 7,
+      "name": "Women Summer Floral Dress",
+      "type": "dress",
+      "description": "Women Summer Floral Dress made from lightweight, breathable fabric, perfect for hot summer days, beach trips, or casual outings. Features delicate floral prints, flowing silhouette, and adjustable waist tie for a flattering fit. Comfortable yet stylish, ideal for daytime events or garden parties.",
+      "price": 44.99,
+      "isTrending": true,
+      "imageUrl": "https://i.ibb.co/RTLRVKxh/quinces-perfectos-5u9-Z55est-Cc-unsplash.jpg"
+   },
+   {
+      "id": 8,
+      "name": "Oversized Cotton Hoodie",
+      "type": "dress",
+      "description": "Oversized Cotton Hoodie made with soft premium fleece, ensuring warmth and comfort during chilly weather. Features a spacious hood, adjustable drawstrings, ribbed cuffs, and a large front pocket. Perfect for casual wear, lounging, or outdoor activities. Trendy, cozy, and durable.",
+      "price": 55.25,
+      "isTrending": false,
+      "imageUrl": "https://i.ibb.co/j9kpGr00/ibrahim-mushan-i-Dc-Up-VWv734-unsplash.jpg"
+   },
+   {
+      "id": 9,
+      "name": "Men Slim Fit Polo T-Shirt",
+      "type": "dress",
+      "description": "Men Slim Fit Polo T-Shirt crafted from breathable premium cotton, providing comfort and ease of movement. Features a classic collar, button placket, and a tailored slim fit for a polished casual look. Ideal for work, leisure, or smart casual occasions.",
+      "price": 29.50,
+      "isTrending": true,
+      "imageUrl": "https://i.ibb.co/84Dfc7vS/allef-vinicius-h3co-HRH0-J3o-unsplash.jpg"
+   },
+   {
+      "id": 10,
+      "name": "Women Luxury Silk Saree",
+      "type": "dress",
+      "description": "Women Luxury Silk Saree made from premium pure silk, offering lightweight elegance and smooth texture. Features intricate weaving patterns, rich color, and a graceful drape. Perfect for weddings, festivals, and traditional occasions. Combines tradition with luxurious comfort.",
+      "price": 120.75,
+      "isTrending": true,
+      "imageUrl": "https://i.ibb.co/B5ztjfpd/behnam-mohsenzadeh-rt9-Qo7w-DL6-A-unsplash.jpg"
+   }
+]

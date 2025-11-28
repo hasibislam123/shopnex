@@ -1,16 +1,11 @@
-// Hooks/useAuth.js
-import { useState } from 'react';
-import { auth, googleProvider } from '../lib/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile, signOut } from 'firebase/auth';
+'use client';
 
-export default function useAuth() {
-   const [user, setUser] = useState(null);
+import { AuthContext } from '@/context/AuthContext';
+import { useContext } from 'react';
 
-   const registerUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
-   const loginUser = (email, password) => signInWithEmailAndPassword(auth, email, password);
-   const updateUserProfile = (profile) => updateProfile(auth.currentUser, profile);
-   const googleLogin = () => signInWithPopup(auth, googleProvider);
-   const logout = () => signOut(auth);
 
-   return { user, registerUser, loginUser, updateUserProfile, googleLogin, logout };
-}
+const useAuth = () => {
+   return useContext(AuthContext);
+};
+
+export default useAuth;

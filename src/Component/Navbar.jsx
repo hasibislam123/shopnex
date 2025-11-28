@@ -4,8 +4,9 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { auth } from '@/lib/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { usePathname } from "next/navigation"; // <-- Active route detect
 
-const routes = [
+const publicRoutes = [
   { name: 'Home', path: '/' },
   { name: 'Products', path: '/products' },
   { name: 'About', path: '/about' },
@@ -13,7 +14,14 @@ const routes = [
   { name: 'Blog', path: '/blog' },
 ];
 
+const privateRoutes = [
+  { name: 'Add Product', path: '/addproduct' },
+  { name: 'Manage Products ', path: '/menageproducts' }
+];
+
 export default function Navbar() {
+  const pathname = usePathname(); // <-- get current route
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [user, setUser] = useState({
@@ -23,7 +31,6 @@ export default function Navbar() {
     photoURL: ''
   });
 
-  // Listen Firebase Auth changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -44,18 +51,6 @@ export default function Navbar() {
     });
 
     return () => unsubscribe();
-  }, []);
-
-  // Close menu on window resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMenuOpen(false);
-        setIsDropdownOpen(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const handleLogout = async () => {
@@ -110,10 +105,10 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="w-full sticky top-0 bg-white shadow-md z-50">
+    <nav className="w-full sticky top-0 bg-gradient-to-r from-sky-100 via-sky-200 to-blue-400 bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-          Shop<span className='text-[#a2d2ff]'>nex</span>
+          Shop<span className='text-[#2290f7]'>nex</span>
         </Link>
 
         {/* Mobile */}
@@ -134,8 +129,24 @@ export default function Navbar() {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6 font-medium">
-          {routes.map(route => (
-            <Link key={route.name} href={route.path} className='px-3 py-2 hover:text-blue-600 rounded'>
+          {publicRoutes.map(route => (
+            <Link 
+              key={route.name} 
+              href={route.path}
+              className={`px-3 py-2 rounded 
+              ${pathname === route.path ? "text-blue-600 font-semibold" : "hover:text-blue-600"}`}
+            >
+              {route.name}
+            </Link>
+          ))}
+
+          {user.isLoggedIn && privateRoutes.map(route => (
+            <Link 
+              key={route.name} 
+              href={route.path}
+              className={`px-3 py-2 rounded 
+              ${pathname === route.path ? "text-blue-600 font-semibold" : "hover:text-blue-600"}`}
+            >
               {route.name}
             </Link>
           ))}
@@ -154,8 +165,29 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white shadow-md px-4 pb-4 space-y-3 font-medium">
-          {routes.map(route => (
-            <Link key={route.name} href={route.path} className='block px-3 py-2 hover:bg-gray-100 rounded' onClick={() => setIsMenuOpen(false)}>
+
+          {publicRoutes.map(route => (
+            <Link
+              key={route.name}
+              href={route.path}
+              onClick={() => setIsMenuOpen(false)}
+              className={`block px-3 py-2 rounded ${
+                pathname === route.path ? "text-blue-600 font-semibold" : "hover:bg-gray-100"
+              }`}
+            >
+              {route.name}
+            </Link>
+          ))}
+
+          {user.isLoggedIn && privateRoutes.map(route => (
+            <Link
+              key={route.name}
+              href={route.path}
+              onClick={() => setIsMenuOpen(false)}
+              className={`block px-3 py-2 rounded ${
+                pathname === route.path ? "text-blue-600 font-semibold" : "hover:bg-gray-100"
+              }`}
+            >
               {route.name}
             </Link>
           ))}
