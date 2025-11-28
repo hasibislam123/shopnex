@@ -8,7 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth, googleProvider } from "../../../lib/firebase";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams,  } from "next/navigation";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import axios from "axios";
 

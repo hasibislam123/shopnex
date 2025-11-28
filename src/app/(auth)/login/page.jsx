@@ -4,7 +4,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { auth, googleProvider } from '../../../lib/firebase';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams,   } from 'next/navigation';
 
 export default function Login() {
    const { register, handleSubmit, formState: { errors } } = useForm();
